@@ -133,7 +133,8 @@ docker build -t safe-python-runner:latest runner_image
 Verify:
 
 docker images | grep safe-python-runner
-```
+
+![alt text](<Screenshot 2025-12-11 025117.png>)
 4. Start the API
 
 source venv/bin/activate
@@ -188,8 +189,8 @@ Test 3 — Infinite Loop (Timeout)
 Expected:
 
 {"error": "Execution timed out after 10 seconds"}
-c:\users\rahul sayya\OneDrive\Pictures\Screenshots\Screenshot 2025-12-11 005246.png
 ```
+![alt text](<Screenshot 2025-12-11 005246-1.png>)
 Test 4 — Memory Exhaustion
 
 {"code":"x='a'*1000000000\nprint(len(x))"}
@@ -197,10 +198,8 @@ Test 4 — Memory Exhaustion
 Expected:
 
 {"error":"Process killed: out-of-memory (container exceeded memory limit)"}
-c:\Users\Rahul Sayya\OneDrive\Pictures\Screenshots\Screenshot 2025-12-09 234808.png
-
 ```
-
+![alt text](<Screenshot 2025-12-09 234808-1.png>)
 Test 5 — Network Access Blocked
 
 {"code":"import socket\nsocket.socket().connect(('example.com',80))"}
@@ -208,10 +207,8 @@ Test 5 — Network Access Blocked
 Expected:
 
 {"error": "Network access is disabled"}
-C:\Users\Rahul Sayya\OneDrive\Pictures\Screenshots\Screenshot 2025-12-11 010057.png
-C:\users\rahul sayya\OneDrive\Pictures\Screenshots\Screenshot 2025-12-10 011443.png
 ```
-
+![alt text](<Screenshot 2025-12-09 234808-2.png>)
 ### Security Architecture 
 
 The project uses Docker to isolate execution through:
