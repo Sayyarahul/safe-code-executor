@@ -144,7 +144,7 @@ python app.py
 cpp
 http://127.0.0.1:5000/
 ![alt text](<Screenshot 2025-12-09 234907.png>)
-```
+
 
 Testing the API
 ```
@@ -170,7 +170,7 @@ json
 ![alt text](<code excuter.png>)
 ![alt text](<Screenshot 2025-12-11 005246.png>)
 
-```
+
 Test 2 — Multi-line Code
 
 {"code":"print('Hello')\nfor i in range(3): print(i)"}
@@ -189,8 +189,10 @@ Test 3 — Infinite Loop (Timeout)
 Expected:
 
 {"error": "Execution timed out after 10 seconds"}
-```
 ![alt text](<Screenshot 2025-12-11 005246-1.png>)
+
+
+
 Test 4 — Memory Exhaustion
 
 {"code":"x='a'*1000000000\nprint(len(x))"}
@@ -198,8 +200,9 @@ Test 4 — Memory Exhaustion
 Expected:
 
 {"error":"Process killed: out-of-memory (container exceeded memory limit)"}
-```
 ![alt text](<Screenshot 2025-12-09 234808-1.png>)
+
+
 Test 5 — Network Access Blocked
 
 {"code":"import socket\nsocket.socket().connect(('example.com',80))"}
@@ -207,8 +210,8 @@ Test 5 — Network Access Blocked
 Expected:
 
 {"error": "Network access is disabled"}
-```
 ![alt text](<Screenshot 2025-12-09 234808-2.png>)
+
 ### Security Architecture 
 
 The project uses Docker to isolate execution through:
