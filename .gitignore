@@ -1,0 +1,26 @@
+# virtualenvs
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# env files
+.env
+.env.* 
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Byte-compiled / build files
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
