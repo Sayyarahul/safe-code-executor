@@ -143,15 +143,14 @@ python app.py
 - API runs at:
 cpp
 http://127.0.0.1:5000/
-![alt text](<Screenshot 2025-12-09 234907.png>)
 
-
-Testing the API
 ```
+![alt text](<Screenshot 2025-12-09 234907-1.png>)
+Testing the API
+
 Test 1 — Basic Code
 
-Create file:
-
+Create file
 cat > /tmp/test1.json <<'EOF'
 {"code":"print('Hello World')"}
 EOF
