@@ -266,3 +266,4 @@ Network isolation prevents real external request testing.
 Running the API with access to Docker socket is dangerous.
 
 
+# safe-code-executor
