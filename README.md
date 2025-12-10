@@ -166,8 +166,8 @@ Expected:
 
 json
 {"output": "Hello World"}
-C:\users\rahul sayya\OneDrive\Pictures\Screenshots\Screenshot 2025-12-11 005246.png
-C:\Users\Rahul Sayya\Downloads\code excuter.png
+![alt text](<Screenshot 2025-12-10 010538.png>)
+![alt text](<Screenshot 2025-12-11 005246.png>)
 
 ```
 Test 2 — Multi-line Code
