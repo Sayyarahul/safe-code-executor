@@ -109,54 +109,55 @@ Safe-Code-Executor/
 
 On Ubuntu/WSL:
 
-```
 1. sudo apt update
-sudo apt install -y python3-venv python3-pip
-Install Docker Desktop and enable WSL2 integration.
-
-Verify Docker is working:
-
-docker run --rm hello-world
 ```
-2. Create and Activate the Python Virtual Environment
+sudo apt install -y python3-venv python3-pip
+```
+Install Docker Desktop and enable WSL2 integration.
+Verify Docker is working:
+docker run --rm hello-world
 
+2. Create and Activate the Python Virtual Environment
+```
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
 
-``
+```
 3. Build the Secure Runner Image
 
 docker build -t safe-python-runner:latest runner_image
+
 Verify:
 
 docker images | grep safe-python-runner
-``
+```
 4. Start the API
 
 source venv/bin/activate
 python app.py
-API runs at:
-
+```
+- API runs at:
 cpp
 http://127.0.0.1:5000/
 Testing the API
 ```
 Test 1 — Basic Code
+
 Create file:
-
-
 
 cat > /tmp/test1.json <<'EOF'
 {"code":"print('Hello World')"}
 EOF
+```
 Execute:
 
 
 curl -s -X POST http://127.0.0.1:5000/run \
   -H "Content-Type: application/json" \
   --data @/tmp/test1.json
+  ```
 Expected:
 
 json
@@ -176,6 +177,7 @@ Hello
 Test 3 — Infinite Loop (Timeout)
 
 {"code":"while True:\n    pass"}
+```
 Expected:
 
 {"error": "Execution timed out after 10 seconds"}
@@ -183,6 +185,7 @@ Expected:
 Test 4 — Memory Exhaustion
 
 {"code":"x='a'*1000000000\nprint(len(x))"}
+```
 Expected:
 
 {"error":"Process killed: out-of-memory (container exceeded memory limit)"}
@@ -190,37 +193,27 @@ Expected:
 Test 5 — Network Access Blocked
 
 {"code":"import socket\nsocket.socket().connect(('example.com',80))"}
+```
 Expected:
 
 {"error": "Network access is disabled"}
-Security Architecture
+
+### Security Architecture 
+
 The project uses Docker to isolate execution through:
-
-Resource limits
-
---memory=128m
-
---cpus=.5
-
---pids-limit=64
-
-Restricted privileges
-
-Non-root user
-
-Dropped capabilities
-
-Read-only filesystem
-
-no-new-privileges flag
-
-Namespace isolation
-
---network none
-
-Isolated filesystem
-
-Temporary script directory
+- Resource limits
+- --memory=128m
+- --cpus=.5
+- --pids-limit=64
+- Restricted privileges
+- Non-root user
+- Dropped capabilities
+- Read-only filesystem
+- no-new-privileges flag
+- Namespace isolation
+- --network none
+- Isolated filesystem
+- Temporary script directory
 
 ### Execution Flow Diagram ###
 
@@ -250,21 +243,17 @@ docker ps -q | xargs -r docker stop
 Remove unused containers:
 ```
 docker container prune -f
-Limitations
+```
+- Limitations
+
 This sandbox is not production-grade.
 
-Limitations include:
+- Limitations include:
 
-Docker is not a complete security boundary; kernel exploits can escape containers.
+- Docker is not a complete security boundary; kernel exploits can escape containers.
+- No rate limiting, multi-tenancy, or authentication.
+- The host timeout tool may have edge-case issues.
+- Network isolation prevents real external request testing.
+- Running the API with access to Docker socket is dangerous.
 
-No rate limiting, multi-tenancy, or authentication.
-
-The host timeout tool may have edge-case issues.
-
-Network isolation prevents real external request testing.
-
-Running the API with access to Docker socket is dangerous.
-
-
-# safe-code-executor
 # safe-code-executor
