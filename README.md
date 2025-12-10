@@ -93,7 +93,7 @@ The system demonstrates:
 
 ## Project Structure
 
-``
+```
 Safe-Code-Executor/
 ├── app.py # Flask API + UI
 ├── requirements.txt # Python dependencies
@@ -101,7 +101,7 @@ Safe-Code-Executor/
 │ └── Dockerfile # Secure container image
 ├── README.md
 └── venv/ # Virtual environment (ignored)
-``
+```
 ---
 
 ## Installation and Setup
